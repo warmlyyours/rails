@@ -64,8 +64,8 @@ module ActiveRecord
       def scoped
         association = @association
         scope = association.scoped
-        scope.none! if association.owner.new_record?
-        scope.extending! do
+        scope.none if association.owner.new_record?
+        scope.extending do
           define_method(:proxy_association) { association }
         end
       end
